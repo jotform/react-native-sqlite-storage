@@ -15,8 +15,6 @@ import com.facebook.react.uimanager.ViewManager;
 import com.github.dryganets.sqlite.adapter.DatabaseConnectionProvider;
 import com.github.dryganets.sqlite.adapter.DefaultConnectionProvider;
 
-import com.github.dryganets.adapter.cipher.SqliteCipherConnectionProvider;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,7 +38,7 @@ public class SQLitePluginPackage implements ReactPackage {
       List<NativeModule> modules = new ArrayList<>();
 
       //  modules.add(new SQLitePlugin(reactContext, this.provider));
-      modules.add(new SQLitePlugin(reactContext, new SqliteCipherConnectionProvider(reactContext)));
+      modules.add(new SQLitePlugin(reactContext, new ZeteticSqlcipherConnectionProvider(reactContext)));
 
       return modules;
     }

@@ -1,6 +1,11 @@
 # Encrypted react-native-sqlite-storage
 This fork integrates [SQLCipher](https://www.zetetic.net/sqlcipher/open-source/) into react-native-sqlite-storage library. Open db connection like below
 
+## Android 16 KB page size devices (native `.so` compatibility)
+Android 15+ devices may use **16 KB memory pages**. If your app ships native libraries (such as SQLCipher’s `libsqlcipher.so`), those libraries must be built with **16 KB ELF segment alignment** or the app may fail to install/run on such devices.
+
+This package’s Android (SQLCipher) implementation uses the modern Maven artifact `net.zetetic:sqlcipher-android`, which provides prebuilts intended to be compatible with 16 KB page-size devices. Your app still needs to follow Android’s packaging guidance (AGP / zip alignment) when producing APKs/AABs.
+
 ```
     SQLite.openDatabase({
       name: 'my.db',

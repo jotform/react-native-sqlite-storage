@@ -40,11 +40,10 @@ repositories {
 
 dependencies {
     implementation 'com.github.dryganets:sqlite-adapter:0.0.1'
-    implementation ('com.github.dryganets:sqlite-adapter-cipher:0.0.1') {
-        exclude module: 'sqlite-adapter'
-        exclude group: "net.zetetic",
-        module: 'android-database-sqlcipher'
-    }
-    implementation 'net.zetetic:android-database-sqlcipher:4.1.3@aar'
+    // android-database-sqlcipher is deprecated and its prebuilts may be incompatible
+    // with Android 16 KB page-size devices. Use the modern SQLCipher Android AAR instead.
+    implementation 'net.zetetic:sqlcipher-android:4.14.0@aar'
+    // Required by sqlcipher-android (provides androidx.sqlite.db.* types such as SupportSQLiteDatabase)
+    implementation 'androidx.sqlite:sqlite:2.6.2'
     implementation 'com.facebook.react:react-native:+'
 }
